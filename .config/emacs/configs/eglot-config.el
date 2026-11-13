@@ -27,13 +27,15 @@
 ;; Emacs 31 ships pinned grammar recipes and remaps classic modes
 ;; (c-mode, go-mode, rust-mode, python-mode, js-mode, ...) to their *-ts-mode
 ;; when the grammar is installed. Grammars live in ~/.config/emacs/tree-sitter/.
-;; Install a missing one with M-x treesit-install-language-grammar.
+;; Missing grammars are cloned + compiled automatically the first time a
+;; *-ts-mode needs one (needs git and a C compiler). Manual: M-x treesit-install-language-grammar.
 ;; No built-in ts mode yet for: zig, odin, svelte, scss, web-mode -> those keep
 ;; their regular font-lock modes.
 ;; Same effect as (setopt treesit-enabled-modes t), whose :set just copies the
 ;; preloaded `treesit-major-mode-remap-alist' into `major-mode-remap-alist'.
 ;; Doing it by hand avoids loading treesit.el at startup (~0.05s).
-(setq treesit-enabled-modes t)
+(setq treesit-enabled-modes t
+      treesit-auto-install-grammar 'always)  ; default 'ask
 (when (treesit-available-p)
   (dolist (m treesit-major-mode-remap-alist)
     (add-to-list 'major-mode-remap-alist m))
