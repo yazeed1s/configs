@@ -17,10 +17,16 @@
 
 (require 'use-package)
 
-(setq use-package-always-ensure t        
-      use-package-verbose nil             
-      use-package-compute-statistics nil  
-      use-package-expand-minimally t)     
+(setq use-package-always-ensure t
+      use-package-verbose nil
+      use-package-compute-statistics t    ; Enable to diagnose - run M-x use-package-report
+      use-package-expand-minimally t)
+
+;; (setq package-vc-allow-build-commands t)
+;; (use-package reader
+;;   :defer t
+;;   :vc (:url "https://codeberg.org/divyaranjan/emacs-reader"
+;; 			:make "all"))
 
 (defvar yaz/config-dir (expand-file-name "configs" user-emacs-directory)
   "where the config modules live")
@@ -34,25 +40,21 @@
 
 ;; load everything
 ;; order matters here
-(require 'core)              
-(require 'completion)        
-(require 'yaz-utils)         
-(require 'yaz-file-utils)    
-(require 'yaz-system)        
-(require 'proc-manager)      
-(require 'docker-manager)    
-(require 'ui)                
-(require 'evil-config)       
-(require 'keybindings)       
-(require 'git-config)        
-;; (require 'lsp-config)     
-(require 'eglot-config)      
-(require 'writing)           
-(require 'tools)             
-(require 'tree-config)           
+(require 'core)
+(require 'completion)
+(require 'ai)
+(require 'lib)
+(require 'proc-manager)
+(require 'ui)
+(require 'keybindings)
+(require 'git-config)
+;; (require 'lsp-config)
+(require 'eglot-config)
+(require 'writing)
 ;; (require 'inhibit-mouse-config)
-(require 'org-config)     
-       
+(require 'org-config)
+(require 'session-config)
+
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 (when (file-exists-p custom-file)
@@ -63,3 +65,21 @@
          gcs-done)
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-vc-selected-packages '((odin-mode :url "https://github.com/mattt-b/odin-mode"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(font-lock-builtin-face ((t (:slant normal))))
+ '(font-lock-constant-face ((t (:slant normal))))
+ '(font-lock-function-name-face ((t (:slant normal))))
+ '(font-lock-keyword-face ((t (:slant normal))))
+ '(font-lock-string-face ((t (:slant normal))))
+ '(font-lock-type-face ((t (:slant normal))))
+ '(font-lock-variable-name-face ((t (:slant normal)))))

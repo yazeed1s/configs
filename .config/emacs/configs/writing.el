@@ -165,6 +165,7 @@
 
 (use-package olivetti
   :ensure t
+  :defer t
   :custom
   (olivetti-body-width 0.6)
   (olivetti-minimum-body-width 80))
@@ -245,6 +246,7 @@
 
 (use-package pandoc-mode
   :ensure t
+  :defer t
   :config
   (add-hook 'pandoc-mode-hook 'pandoc-load-default-settings))
 

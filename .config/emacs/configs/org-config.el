@@ -196,7 +196,10 @@
     (message "✓ review created: %s" title)))
 
 (use-package org
-  :config
+:defer t
+:mode
+  ("\\.org\\'" . org-mode)
+:config
   (setq org-directory "~/org")
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
 
@@ -304,8 +307,11 @@
                     ((org-agenda-overriding-header "stuck projects"))))))))
 
 (use-package org-roam
-  :ensure t
-  :custom
+:ensure t
+:defer t
+:commands
+  (org-roam-node-find org-roam-node-insert org-roam-capture org-roam-buffer-toggle org-roam-dailies-goto-today)
+:custom
   (org-roam-directory "~/org/roam")
   (org-roam-completion-everywhere nil)
 
@@ -313,13 +319,21 @@
   (org-roam-db-autosync-mode))
 
 (use-package citar
-  :ensure t
-  :custom
-  (citar-bibliography '("~/org/ref.bib"))
-  (citar-library-paths '("~/org/papers/pdfs/"))
-  (citar-notes-paths '("~/org/papers/reviews/"))
-  (citar-file-download-dirs '("~/org/papers/pdfs/"))
-  (org-cite-global-bibliography '("~/org/ref.bib"))
+:ensure t
+:defer t
+:commands
+  (citar-insert-citation citar-open citar-open-notes citar-open-link citar-select-ref citar-get-entry)
+:custom
+  (citar-bibliography '
+    ("~/org/ref.bib"))
+  (citar-library-paths '
+    ("~/org/papers/pdfs/"))
+  (citar-notes-paths '
+    ("~/org/papers/reviews/"))
+  (citar-file-download-dirs '
+    ("~/org/papers/pdfs/"))
+  (org-cite-global-bibliography '
+    ("~/org/ref.bib"))
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar)
@@ -432,9 +446,15 @@
   (citar-org-roam-mode)
   (setq citar-org-roam-note-title-template "${author} - ${title}"))
 
-(add-hook 'org-mode-hook
-          (lambda ()
-            (olivetti-mode -1)))
+(defun yaz/org-visuals ()
+  "paddings for org mode."
+  (interactive)
+  (visual-line-mode 1)
+  (let ((apply-margins (lambda () (set-window-margins nil 1 1))))
+    (funcall apply-margins)
+    (add-hook 'window-configuration-change-hook apply-margins nil 'local)))
+
+(add-hook 'org-mode-hook #'yaz/org-visuals)
 
 (with-eval-after-load 'org
   (setq org-highlight-latex-and-related '(latex))
@@ -460,11 +480,6 @@
 (modify-all-frames-parameters
  '((right-divider-width . 0)
    (internal-border-width . 0)))
-(dolist (face '(window-divider
-                window-divider-first-pixel
-                window-divider-last-pixel))
-  (face-spec-reset-face face)
-  (set-face-foreground face (face-attribute 'default :background)))
 (set-face-background 'fringe (face-attribute 'default :background))
 
 (provide 'org-config)

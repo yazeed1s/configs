@@ -34,71 +34,73 @@
   (lsp-mode . lsp-enable-which-key-integration))
 
 
-(use-package tree-sitter
-  :ensure t
-  :diminish tree-sitter-mode
-  :config
-  (global-tree-sitter-mode)
-
-  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
-
-(use-package tree-sitter-langs
-  :ensure t
-  :after tree-sitter
-  :demand t
-  :config
-  (add-to-list 'tree-sitter-major-mode-language-alist '(c-mode . c))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(c++-mode . cpp))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(rust-mode . rust))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(go-mode . go))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(zig-mode . zig))
-
-  (add-to-list 'tree-sitter-major-mode-language-alist '(python-mode . python))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(ruby-mode . ruby))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(perl-mode . perl))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(lua-mode . lua))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(php-mode . php))
-
-  (add-to-list 'tree-sitter-major-mode-language-alist '(sh-mode . bash))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(bash-mode . bash))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(fish-mode . fish))
-
-  (add-to-list 'tree-sitter-major-mode-language-alist '(typescript-mode . typescript))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(js-mode . javascript))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(javascript-mode . javascript))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(json-mode . json))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(css-mode . css))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(scss-mode . scss))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(html-mode . html))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(web-mode . html))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(svelte-mode . svelte))
-
-  (add-to-list 'tree-sitter-major-mode-language-alist '(java-mode . java))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(kotlin-mode . kotlin))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(scala-mode . scala))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(clojure-mode . clojure))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(groovy-mode . groovy))
-
-  (add-to-list 'tree-sitter-major-mode-language-alist '(haskell-mode . haskell))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(ocaml-mode . ocaml))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(tuareg-mode . ocaml))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(elm-mode . elm))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(elixir-mode . elixir))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(erlang-mode . erlang))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(racket-mode . racket))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(scheme-mode . scheme))
-
-  (add-to-list 'tree-sitter-major-mode-language-alist '(julia-mode . julia))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(ess-r-mode . r))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(r-mode . r))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(swift-mode . swift))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(dart-mode . dart))
-
-  (add-to-list 'tree-sitter-major-mode-language-alist '(yaml-mode . yaml))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(toml-mode . toml))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(cmake-mode . cmake))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(dockerfile-mode . dockerfile))
-  (add-to-list 'tree-sitter-major-mode-language-alist '(makefile-mode . make)))
+;; Old third-party tree-sitter setup. The active native `treesit' setup lives in
+;; eglot-config.el, which is the language-server module currently loaded by init.el.
+;; (use-package tree-sitter
+;;   :ensure t
+;;   :diminish tree-sitter-mode
+;;   :config
+;;   (global-tree-sitter-mode)
+;;
+;;   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+;;
+;; (use-package tree-sitter-langs
+;;   :ensure t
+;;   :after tree-sitter
+;;   :demand t
+;;   :config
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(c-mode . c))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(c++-mode . cpp))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(rust-mode . rust))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(go-mode . go))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(zig-mode . zig))
+;;
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(python-mode . python))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(ruby-mode . ruby))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(perl-mode . perl))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(lua-mode . lua))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(php-mode . php))
+;;
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(sh-mode . bash))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(bash-mode . bash))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(fish-mode . fish))
+;;
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(typescript-mode . typescript))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(js-mode . javascript))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(javascript-mode . javascript))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(json-mode . json))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(css-mode . css))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(scss-mode . scss))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(html-mode . html))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(web-mode . html))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(svelte-mode . svelte))
+;;
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(java-mode . java))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(kotlin-mode . kotlin))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(scala-mode . scala))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(clojure-mode . clojure))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(groovy-mode . groovy))
+;;
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(haskell-mode . haskell))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(ocaml-mode . ocaml))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(tuareg-mode . ocaml))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(elm-mode . elm))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(elixir-mode . elixir))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(erlang-mode . erlang))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(racket-mode . racket))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(scheme-mode . scheme))
+;;
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(julia-mode . julia))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(ess-r-mode . r))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(r-mode . r))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(swift-mode . swift))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(dart-mode . dart))
+;;
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(yaml-mode . yaml))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(toml-mode . toml))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(cmake-mode . cmake))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(dockerfile-mode . dockerfile))
+;;   (add-to-list 'tree-sitter-major-mode-language-alist '(makefile-mode . make)))
 
 (add-hook 'c-mode-hook #'lsp-deferred)
 (add-hook 'c++-mode-hook #'lsp-deferred)
