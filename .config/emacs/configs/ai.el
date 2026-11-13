@@ -63,6 +63,12 @@
   :defer t
   :init
   (setq vterm-always-compile-module t)   ; build the module without asking
+  ;; First run: build the native module now, before evil-collection is
+  ;; installed. Otherwise it gets built while package.el byte-compiles
+  ;; evil-collection-vterm, vterm's build log buffer hijacks that compile,
+  ;; and the broken .elc makes init fail.
+  (unless (locate-library "vterm-module")
+    (save-window-excursion (require 'vterm)))
   :config
   (setq vterm-max-scrollback 10000))
 

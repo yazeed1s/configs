@@ -159,7 +159,7 @@
 
   :config
   (setq pdf-info-epdfinfo-program (expand-file-name "build/server/epdfinfo" (file-name-directory (locate-library "pdf-tools"))))
-  (pdf-tools-install)
+  (pdf-tools-install :no-query)   ; build epdfinfo on first run without prompting
 
   (setq pdf-view-continuous t))
 
